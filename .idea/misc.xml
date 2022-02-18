@@ -6,7 +6,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15566037735849056" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.30690460205078124" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24142367597939313" />
-        <entry key="app/src/main/res/layout/item_article.xml" value="0.23137359619140627" />
+        <entry key="app/src/main/res/layout/fragment_preview_image.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/item_article.xml" value="0.20658264160156253" />
       </map>
     </option>
   </component>

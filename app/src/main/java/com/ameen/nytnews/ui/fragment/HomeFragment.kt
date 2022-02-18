@@ -1,5 +1,6 @@
-package com.ameen.nytnews.fragment
+package com.ameen.nytnews.ui.fragment
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,10 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ameen.nytnews.MyApplication
 import com.ameen.nytnews.R
 import com.ameen.nytnews.adapter.ArticleAdapter
 import com.ameen.nytnews.data.ResponseWrapperState
@@ -64,7 +65,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun initViewModel() {
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        //homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+
+        homeViewModel =
+            ViewModelProvider(this, HomeViewModel.factory(Application()))[HomeViewModel::class.java]
+
         homeViewModel.articlesLiveData.observe(this, Observer {
             Log.i(TAG, "initViewModel: Observer --> ${it.responseData?.results}")
 

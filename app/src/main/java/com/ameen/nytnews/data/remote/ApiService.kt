@@ -1,7 +1,6 @@
 package com.ameen.nytnews.data.remote
 
 import com.ameen.nytnews.BuildConfig
-import com.ameen.nytnews.data.ResponseWrapperState
 import com.ameen.nytnews.data.model.ArticleResponse
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
