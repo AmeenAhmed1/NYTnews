@@ -18,5 +18,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.ameen.nytnews.fragment.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="selectedArticle"
+            app:argType="com.ameen.nytnews.data.model.ArticleResult"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

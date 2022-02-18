@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ameen.nytnews.data.model.ArticleResult
 import com.ameen.nytnews.databinding.ItemArticleBinding
-import com.bumptech.glide.Glide
+import com.ameen.nytnews.util.loadImageUrl
 
 class ArticleAdapter(private val context: Context) :
     RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
@@ -40,7 +40,7 @@ class ArticleAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = diff.currentList[position]
-        val articleImage = article.media.firstOrNull()?.media_metadata?.last()?.url
+        val articleImage = article.media?.firstOrNull()?.media_metadata?.last()?.url
 
         Log.i(TAG, "onBindViewHolder: Adapter -> ${article.title}")
 
@@ -50,13 +50,14 @@ class ArticleAdapter(private val context: Context) :
             textDate.text = article.published_date
         }
 
-        Glide.with(context)
-            .load(articleImage)
-            .centerCrop()
-            .into(holder.binding.imageArticle)
+        context.loadImageUrl(articleImage, holder.binding.imageArticle)
 
-
-        holder.binding.ArticleItem.setOnClickListener { onItemClickListener?.let { it(article) } }
+        holder.binding.ArticleItem.setOnClickListener {
+            onItemClickListener?.let {
+                Log.i(TAG, "onBindViewHolder: AdapterArticle -> $article")
+                it(article)
+            }
+        }
     }
 
     override fun getItemCount(): Int = diff.currentList.size

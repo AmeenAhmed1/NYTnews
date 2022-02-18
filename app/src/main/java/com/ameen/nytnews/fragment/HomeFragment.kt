@@ -1,5 +1,6 @@
 package com.ameen.nytnews.fragment
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ameen.nytnews.R
 import com.ameen.nytnews.adapter.ArticleAdapter
 import com.ameen.nytnews.data.ResponseWrapperState
+import com.ameen.nytnews.data.model.ArticleResult
 import com.ameen.nytnews.databinding.FragmentHomeBinding
 import com.ameen.nytnews.viewmodel.HomeViewModel
 
@@ -30,6 +35,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun initRecycler() {
         articleAdapter = ArticleAdapter(requireContext())
+        articleAdapter.onItemClicked { navigateToDetail(it) }
+
         binding.homeArticleRecycler.apply {
             adapter = articleAdapter
             addItemDecoration(
@@ -41,6 +48,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             hasFixedSize()
         }
+    }
+
+    private fun navigateToDetail(result: ArticleResult) {
+
+        Log.i(TAG, "navigateToDetail: Selected -> $result")
+
+        val bundle = Bundle()
+        bundle.putSerializable("selectedArticle", result)
+
+        findNavController().navigate(
+            R.id.action_homeFragment_to_detailsFragment,
+            bundle
+        )
     }
 
     private fun initViewModel() {
