@@ -10,14 +10,14 @@ object ApiSetting {
 
     private val retrofit by lazy {
         val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        logging.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
             .build()
 
 
         Retrofit.Builder()
-            .baseUrl("https://api.nytimes.com/svc/mostpopular/v2")
+            .baseUrl("https://api.nytimes.com/svc/mostpopular/v2/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

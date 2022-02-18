@@ -14,7 +14,7 @@ interface ApiService {
      * @param apiKey Your Developer API Key.
      * Default is 1
      */
-    @GET("/viewed/{period}.json")
+    @GET("viewed/{period}.json")
     fun getArticles(
         @Path("period") period: Int = 1,
         @Query("api-key") apiKey: String = BuildConfig.WEBSERVICE_API_KEY
