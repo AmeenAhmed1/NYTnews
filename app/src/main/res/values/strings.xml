@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">NYTnews</string>
+    <string name="title">Title</string>
+    <string name="autoher">Autoher</string>
+    <string name="date">20-1-2020</string>
+    <string name="published_by">Published By</string>
+    <string name="rating">Rating</string>
+    <string name="summary">Summary</string>
+    <string name="imagedetails">ImageDetails</string>
 </resources>
