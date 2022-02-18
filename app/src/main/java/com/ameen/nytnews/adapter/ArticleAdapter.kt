@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ameen.nytnews.data.model.ArticleResult
 import com.ameen.nytnews.databinding.ItemArticleBinding
-import com.ameen.nytnews.model.ArticleModel
 
 class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
 
@@ -15,12 +15,12 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
 
     private var _binding: ItemArticleBinding? = null
 
-    private val differCallBack = object : DiffUtil.ItemCallback<ArticleModel>() {
-        override fun areItemsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
+    private val differCallBack = object : DiffUtil.ItemCallback<ArticleResult>() {
+        override fun areItemsTheSame(oldItem: ArticleResult, newItem: ArticleResult): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
+        override fun areContentsTheSame(oldItem: ArticleResult, newItem: ArticleResult): Boolean {
             return oldItem == newItem
         }
     }
@@ -39,8 +39,8 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
 
     override fun getItemCount(): Int = diff.currentList.size
 
-    private var onItemClickListener: ((ArticleModel) -> Unit)? = null
-    fun onItemClicked(listener: (ArticleModel) -> Unit) {
+    private var onItemClickListener: ((ArticleResult) -> Unit)? = null
+    fun onItemClicked(listener: (ArticleResult) -> Unit) {
         onItemClickListener = listener
     }
 }
