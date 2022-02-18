@@ -1,4 +1,4 @@
-package com.ameen.nytnews.fragment
+package com.ameen.nytnews.ui.fragment
 
 import android.view.LayoutInflater
 import android.view.View
