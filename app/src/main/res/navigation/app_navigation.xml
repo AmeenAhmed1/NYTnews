@@ -18,11 +18,23 @@
         android:id="@+id/detailsFragment"
         android:name="com.ameen.nytnews.ui.fragment.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/fragment_details">
         <argument
             android:name="selectedArticle"
+            android:defaultValue="@null"
             app:argType="com.ameen.nytnews.data.model.ArticleResult"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_detailsFragment_to_fullViewFragment"
+            app:destination="@id/fullViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullViewFragment"
+        android:name="com.ameen.nytnews.ui.fragment.FullViewFragment"
+        android:label="FullViewFragment"
+        tools:layout="@layout/fragment_full_view">
+        <argument
+            android:name="selectedImage"
+            app:argType="string" />
     </fragment>
 </navigation>

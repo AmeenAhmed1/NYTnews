@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ravikoradiya.zoomableimageview.ZoomableImageView
+        android:id="@+id/zoomImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_16"
+        android:scaleType="center"
+        app:background_color="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/buttonShare"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_48"
+        android:layout_marginEnd="@dimen/dp_48"
+        android:layout_marginBottom="@dimen/dp_48"
+        android:drawableEnd="@drawable/ic_share"
+        android:text="@string/share"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="614dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
