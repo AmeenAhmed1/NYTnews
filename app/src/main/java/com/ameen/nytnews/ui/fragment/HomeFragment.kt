@@ -15,14 +15,21 @@ import com.ameen.nytnews.R
 import com.ameen.nytnews.adapter.ArticleAdapter
 import com.ameen.nytnews.data.ResponseWrapperState
 import com.ameen.nytnews.data.model.ArticleResult
+import com.ameen.nytnews.data.remote.ApiService
 import com.ameen.nytnews.databinding.FragmentHomeBinding
 import com.ameen.nytnews.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
     private val TAG = "HomeFragment"
+
+    @Inject
+    lateinit var apiEndPointService: ApiService
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var articleAdapter: ArticleAdapter
@@ -63,7 +70,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun initViewModel() {
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        //homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        homeViewModel =
+            ViewModelProvider(
+                this,
+                HomeViewModel.factory(apiEndPointService)
+            )[HomeViewModel::class.java]
+
         homeViewModel.articlesLiveData.observe(this, Observer {
             Log.i(TAG, "initViewModel: Observer --> ${it.responseData?.results}")
 
