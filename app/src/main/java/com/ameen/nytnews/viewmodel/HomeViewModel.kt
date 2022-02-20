@@ -2,12 +2,18 @@ package com.ameen.nytnews.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.ameen.nytnews.data.ResponseWrapperState
 import com.ameen.nytnews.data.model.ArticleResponse
-import com.ameen.nytnews.data.remote.ApiSetting
+import com.ameen.nytnews.data.remote.ApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    val apiEndPoint: ApiService
+) : ViewModel() {
 
     val articlesLiveData: MutableLiveData<ResponseWrapperState<ArticleResponse>> = MutableLiveData()
 
@@ -19,7 +25,7 @@ class HomeViewModel : ViewModel() {
 
         articlesLiveData.postValue(ResponseWrapperState.Loading())
 
-        ApiSetting.apiInstance.getArticles()
+        apiEndPoint.getArticles()
             .observeOn(Schedulers.io())
             .subscribe(
                 { articleResponse ->
@@ -32,4 +38,16 @@ class HomeViewModel : ViewModel() {
 
             )
     }
+
+
+    companion object {
+        fun factory(apiEndPoint: ApiService): ViewModelProvider.Factory {
+            return object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return HomeViewModel(apiEndPoint) as T
+                }
+            }
+        }
+    }
+
 }
